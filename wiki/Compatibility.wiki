@@ -2,7 +2,7 @@
 
 = Compatibility Reports =
 
-This page is a list of compatibility reports for this driver. Please add your keyboard if you don't see it in the list.
+This page is a list of compatibility reports for this driver. Please add a comment if your keyboard isn't in the list.
 
 
 || *Keyboard* || *OS X Version* || *System* || *Works ?* ||
