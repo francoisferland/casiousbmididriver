@@ -337,7 +337,7 @@
 			buildSettings = {
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "PublicUtility Shared";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
@@ -346,7 +346,7 @@
 			buildSettings = {
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "PublicUtility Shared";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
