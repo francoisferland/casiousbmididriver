@@ -208,16 +208,13 @@
 		<dict>
 			<key>ChosenToolbarItems</key>
 			<array>
-				<string>active-target-popup</string>
-				<string>active-buildstyle-popup</string>
+				<string>active-combo-popup</string>
 				<string>action</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
-				<string>buildOrClean</string>
-				<string>build-and-goOrGo</string>
-				<string>go-debug</string>
+				<string>debugger-enable-breakpoints</string>
+				<string>build-and-go</string>
 				<string>com.apple.ide.PBXToolbarStopButton</string>
 				<string>get-info</string>
-				<string>toggle-editor</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
 				<string>com.apple.pbx.toolbar.searchfield</string>
 			</array>
@@ -232,15 +229,12 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
 						<array>
 							<string>1C37FBAC04509CD000000102</string>
 							<string>1C37FAAC04509CD000000102</string>
-							<string>1C08E77C0454961000C914BD</string>
 							<string>1C37FABC05509CD000000102</string>
 							<string>1C37FABC05539CD112110102</string>
 							<string>E2644B35053B69B200211256</string>
@@ -279,6 +273,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>5</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -302,7 +298,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>240 212 1006 445 0 0 1440 878 </string>
+						<string>76 172 1006 445 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -339,7 +335,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {798, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>240 212 1006 445 0 0 1440 878 </string>
+								<string>76 172 1006 445 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -347,6 +343,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -359,7 +357,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {798, 399}}</string>
 								<key>RubberWindowFrame</key>
-								<string>240 212 1006 445 0 0 1440 878 </string>
+								<string>76 172 1006 445 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -383,12 +381,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>9126CA130D31188900A85CF6</string>
+				<string>919B1E87108A1F5800C69778</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>9126CA140D31188900A85CF6</string>
+				<string>919B1E88108A1F5800C69778</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
+			<key>ToolbarConfigUserDefaultsMinorVersion</key>
+			<string>2</string>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.defaultV3</string>
 		</dict>
@@ -519,10 +519,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/francoisferland/devel/casio/CasioUSBMIDIDriver/CasioUSBMIDIDriver.xcodeproj</string>
+		<string>91B358860D24217600D5D27F</string>
+		<string>/users/francoisferland/devel/casio/CasioUSBMIDIDriver/CasioUSBMIDIDriver.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>240 212 1006 445 0 0 1440 878 </string>
+	<string>76 172 1006 445 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -565,7 +566,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Build</string>
+								<string>Build Results</string>
 								<key>XCBuildResultsTrigger_Collapse</key>
 								<integer>1021</integer>
 								<key>XCBuildResultsTrigger_Open</key>
@@ -599,7 +600,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>91B358860D24217600D5D27F</string>
-				<string>910FD0960D2CA28600905259</string>
+				<string>919B1E89108A1F5800C69778</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

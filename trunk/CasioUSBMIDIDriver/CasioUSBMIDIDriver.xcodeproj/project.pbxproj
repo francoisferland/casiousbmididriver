@@ -299,7 +299,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Info-CasioUSBMIDIDriver.plist";
 				INSTALL_PATH = "/Library/Audio/MIDI Drivers";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = CasioUSBMIDIDriver;
 				VERSIONING_SYSTEM = "apple-generic";
