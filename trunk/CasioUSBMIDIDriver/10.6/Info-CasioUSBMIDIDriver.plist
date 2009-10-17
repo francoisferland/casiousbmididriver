@@ -27,17 +27,17 @@
 	<key>CFPlugInDynamicRegisterFunction</key>
 	<string></string>
 	<key>CFPlugInDynamicRegistration</key>
-	<string>NO</string>
+	<true/>
 	<key>CFPlugInFactories</key>
 	<dict>
-		<key>46727133-BF59-11D5-927F-00039301A6E6</key>
-		<string>NewSampleUSBMIDIDriver</string>
+		<key>0AF61C91-A75F-4CDC-A91A-9A76B179F7DE</key>
+		<string>NewCasioUSBMIDIDriver</string>
 	</dict>
 	<key>CFPlugInTypes</key>
 	<dict>
 		<key>ECDE9574-0FE4-11D4-BB1A-0050E4CEA526</key>
 		<array>
-			<string>46727133-BF59-11D5-927F-00039301A6E6</string>
+			<string>0AF61C91-A75F-4CDC-A91A-9A76B179F7DE</string>
 		</array>
 	</dict>
 </dict>
