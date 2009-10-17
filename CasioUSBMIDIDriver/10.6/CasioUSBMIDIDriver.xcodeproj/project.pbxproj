@@ -45,10 +45,10 @@
 /* Begin PBXFileReference section */
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		3EB3AB63079D51BB0046E3F3 /* CasioUSBMIDIDriver.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CasioUSBMIDIDriver.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		911404C4108A245D0061F198 /* CasioUSBMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CasioUSBMIDI.cpp; path = /Users/francoisferland/Desktop/CasioUSBMIDIDriver/CasioUSBMIDI.cpp; sourceTree = "<absolute>"; };
-		911404C5108A245D0061F198 /* CasioUSBMIDI.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.exports; name = CasioUSBMIDI.exp; path = /Users/francoisferland/Desktop/CasioUSBMIDIDriver/CasioUSBMIDI.exp; sourceTree = "<absolute>"; };
-		911404C6108A245D0061F198 /* CasioUSBMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CasioUSBMIDI.h; path = /Users/francoisferland/Desktop/CasioUSBMIDIDriver/CasioUSBMIDI.h; sourceTree = "<absolute>"; };
-		911404CA108A246D0061F198 /* Info-CasioUSBMIDIDriver.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Info-CasioUSBMIDIDriver.plist"; path = "/Users/francoisferland/Desktop/CasioUSBMIDIDriver/Info-CasioUSBMIDIDriver.plist"; sourceTree = "<absolute>"; };
+		911404C4108A245D0061F198 /* CasioUSBMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CasioUSBMIDI.cpp; sourceTree = "<group>"; };
+		911404C5108A245D0061F198 /* CasioUSBMIDI.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.exports; path = CasioUSBMIDI.exp; sourceTree = "<group>"; };
+		911404C6108A245D0061F198 /* CasioUSBMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasioUSBMIDI.h; sourceTree = "<group>"; };
+		911404CA108A246D0061F198 /* Info-CasioUSBMIDIDriver.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-CasioUSBMIDIDriver.plist"; sourceTree = "<group>"; };
 		F490F210C5B03DDB00A007D0 /* CAHostTimeBase.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAHostTimeBase.cpp; sourceTree = "<group>"; };
 		F490F211C5B03DDB00A007D0 /* CAHostTimeBase.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CAHostTimeBase.h; sourceTree = "<group>"; };
 		F490F214C5B03DDB00A007D0 /* CAMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = CAMutex.cpp; sourceTree = "<group>"; };
