@@ -1,7 +1,6 @@
 // !$*UTF8*$!
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
-		activeArchitecture = i386;
 		activeBuildConfigurationName = Deployment;
 		activeTarget = 3EB3AB3D079D51BB0046E3F3 /* CasioUSBMIDIDriver */;
 		codeSenseManager = 91B3587A0D24210200D5D27F /* Code sense */;
@@ -74,8 +73,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 221321324;
-			PBXWorkspaceStateSaveDate = 221321324;
+			PBXPerProjectTemplateStateSaveDate = 277487446;
+			PBXWorkspaceStateSaveDate = 277487446;
 		};
 		sourceControlManager = 91B358790D24210200D5D27F /* Source Control */;
 		userBuildSettings = {
@@ -90,6 +89,9 @@
 		isSCMEnabled = 0;
 		scmConfiguration = {
 			repositoryName = "casiousbmididriver googlecode";
+			repositoryNamesForRoots = {
+				"" = "casiousbmididriver googlecode";
+			};
 		};
 	};
 	91B3587A0D24210200D5D27F /* Code sense */ = {
