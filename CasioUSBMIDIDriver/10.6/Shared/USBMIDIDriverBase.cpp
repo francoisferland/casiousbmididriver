@@ -91,7 +91,7 @@ OSStatus	USBMIDIDriverBase::Send(const MIDIPacketList *pktlist, void *endptRef1,
 	USBMIDIDevice *usbmDev = (USBMIDIDevice *)endptRef1;
 	if (usbmDev == NULL) return kMIDIUnknownEndpoint;
 
-	usbmDev->Send(pktlist, (int)endptRef2);	// endptRef2 = port number
+	usbmDev->Send(pktlist, (int)(*((int*)&endptRef2)));	// endptRef2 = port number
 
 	return noErr;
 }
