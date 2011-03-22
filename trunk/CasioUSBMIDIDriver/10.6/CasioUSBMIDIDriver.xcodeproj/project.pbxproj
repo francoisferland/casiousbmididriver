@@ -323,6 +323,7 @@
 				INSTALL_PATH = "/Library/Audio/MIDI Drivers";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = CasioUSBMIDIDriver;
+				VALID_ARCHS = "universal i386 x86_64";
 				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -351,7 +352,7 @@
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "universal i386 x86_64";
 			};
 			name = Deployment;
 		};
