@@ -102,7 +102,7 @@ MIDIDeviceRef	CasioUSBMIDIDriver::CreateDevice(	USBDevice *		inUSBDevice,
 	MIDIEntityRef ent;
 	//UInt16 devProduct = USBToHostWord(inUSBDevice->GetDeviceDescriptor()->idProduct);
 	
-	CFStringRef boxName = CFSTR("MyProductName");
+	CFStringRef boxName = CFSTR("Casio USB Keyboard");
 	MIDIDeviceCreate(Self(),
 		boxName,
 		CFSTR("Acme"),	// manufacturer name
