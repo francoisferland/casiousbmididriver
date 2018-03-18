@@ -7,7 +7,7 @@ http://code.google.com/p/casiousbmididriver
 
 ## Installation
 
-The latest release supports Mac OS X 10.7 (Lion) to 10.10 (Yosemite) and is available here:
+The latest release supports Mac OS X 10.7 (Lion) and up:
 
 https://github.com/francoisferland/casiousbmididriver/releases/download/release-1.0/Casio.USB.MIDI.Driver.10.7.pkg
 
