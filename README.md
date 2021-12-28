@@ -13,7 +13,7 @@ http://code.google.com/p/casiousbmididriver
 
 ## Installation
 
-The current version is compatible with macOS 11.0 (Big Sur) and up. While it has been compiled for both Intel and Apple Silicon (M1 and others), I cannot test if it actually works with Apple Silicon. To install it, simply download the .plugin file and copy it to your /Library/Audio/MIDI and Audio Drivers folder :
+The current version is compatible with macOS 11.0 (Big Sur) and up. While it has been compiled for both Intel and Apple Silicon (M1 and others), I cannot test if it actually works with Apple Silicon. To install it, simply download the .plugin file and copy it to your /Library/Audio/MIDI Drivers folder :
 
 https://github.com/francoisferland/casiousbmididriver/releases/tag/11.0
 
