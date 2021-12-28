@@ -34,7 +34,6 @@
 		911404C7108A245D0061F198 /* CasioUSBMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 911404C4108A245D0061F198 /* CasioUSBMIDI.cpp */; };
 		911404C9108A245D0061F198 /* CasioUSBMIDI.h in Headers */ = {isa = PBXBuildFile; fileRef = 911404C6108A245D0061F198 /* CasioUSBMIDI.h */; };
 		9148FAFC110CB2D300AEF5BE /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55F18B701554564010C93F4 /* CoreMIDI.framework */; };
-		9149EADD1B7560CF002D3026 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9149EADC1B7560CF002D3026 /* CoreAudio.framework */; };
 		9149EAEE1B756358002D3026 /* CADebugPrintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9149EAEC1B756358002D3026 /* CADebugPrintf.cpp */; };
 		9149EAEF1B756358002D3026 /* CADebugPrintf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9149EAED1B756358002D3026 /* CADebugPrintf.h */; };
 		9149EAF21B756367002D3026 /* CAMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9149EAF01B756367002D3026 /* CAMutex.cpp */; };
@@ -52,7 +51,6 @@
 		911404C4108A245D0061F198 /* CasioUSBMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CasioUSBMIDI.cpp; sourceTree = "<group>"; };
 		911404C6108A245D0061F198 /* CasioUSBMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasioUSBMIDI.h; sourceTree = "<group>"; };
 		911404CA108A246D0061F198 /* Info-CasioUSBMIDIDriver.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-CasioUSBMIDIDriver.plist"; sourceTree = "<group>"; };
-		9149EADC1B7560CF002D3026 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
 		9149EAEC1B756358002D3026 /* CADebugPrintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugPrintf.cpp; sourceTree = "<group>"; };
 		9149EAED1B756358002D3026 /* CADebugPrintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugPrintf.h; sourceTree = "<group>"; };
 		9149EAF01B756367002D3026 /* CAMutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAMutex.cpp; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9149EADD1B7560CF002D3026 /* CoreAudio.framework in Frameworks */,
 				3EB3AB5E079D51BB0046E3F3 /* CoreFoundation.framework in Frameworks */,
 				3EB3AB60079D51BB0046E3F3 /* IOKit.framework in Frameworks */,
 				9148FAFC110CB2D300AEF5BE /* CoreMIDI.framework in Frameworks */,
@@ -109,7 +106,6 @@
 		089C166AFE841209C02AAC07 /* MIDIDrivers */ = {
 			isa = PBXGroup;
 			children = (
-				9149EADC1B7560CF002D3026 /* CoreAudio.framework */,
 				F509F4D40177994001CA2136 /* CasioUSBMIDIDriver */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB6FE9D52B211CA2CBB /* Products */,
@@ -250,6 +246,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 089C166AFE841209C02AAC07 /* MIDIDrivers */;
@@ -357,18 +354,16 @@
 		3EAAFBDD08984664003EB3A7 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				VALID_ARCHS = "i386 x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				SDKROOT = macosx;
 			};
 			name = Development;
 		};
 		3EAAFBDE08984664003EB3A7 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				VALID_ARCHS = "universal i386 x86_64";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				SDKROOT = macosx;
 			};
 			name = Deployment;
 		};

@@ -1,4 +1,4 @@
-/*	Copyright © 2007 Apple Inc. All Rights Reserved.
+/*	Copyright ï¿½ 2007 Apple Inc. All Rights Reserved.
 	
 	Disclaimer: IMPORTANT:  This Apple software is supplied to you by 
 			Apple Inc. ("Apple") in consideration of your agreement to the
@@ -81,7 +81,7 @@ USBDevice::USBDevice(io_service_t ioDeviceObj) :
 USBDevice::~USBDevice()
 {
 	if (mIsOpen)
-		verify_noerr((*mPluginIntf)->USBDeviceClose(mPluginIntf));
+        __Verify_noErr((*mPluginIntf)->USBDeviceClose(mPluginIntf));
 	if (mPluginIntf != NULL)
 		(*mPluginIntf)->Release(mPluginIntf);
 	IOObjectRelease(mIOService);
@@ -107,7 +107,7 @@ IOUSBDeviceInterface **	USBDevice::GetPluginInterface()
 		if (kr) {
 			usleep(100 * 1000);	// wait 100 ms
 	
-			require_noerr(IOCreatePlugInInterfaceForService(
+            __Require_noErr(IOCreatePlugInInterfaceForService(
 				mIOService, kIOUSBDeviceUserClientTypeID, kIOCFPlugInInterfaceID, 
 				&ioPlugin, &score), errexit);
 		}
@@ -115,10 +115,10 @@ IOUSBDeviceInterface **	USBDevice::GetPluginInterface()
 		(*ioPlugin)->Release(ioPlugin);
 		ioPlugin = NULL;
 		if (kr) {
-			debug_string("QueryInterface failed");
+			__Debug_String("QueryInterface failed");
 			mPluginIntf = NULL;
 		} else {
-			verify_noerr((*mPluginIntf)->GetLocationID(mPluginIntf, &mLocationID));
+            __Verify_noErr((*mPluginIntf)->GetLocationID(mPluginIntf, &mLocationID));
 #if VERBOSE
 			printf("device @ 0x%08lX\n", mLocationID);
 #endif
@@ -144,7 +144,7 @@ const IOUSBDeviceDescriptor *	USBDevice::GetDeviceDescriptor()
 			goto errexit;
 	
 		UInt8 devClass;
-		require_noerr((*deviceIntf)->GetDeviceClass(deviceIntf, &devClass), errexit);
+        __Require_noErr((*deviceIntf)->GetDeviceClass(deviceIntf, &devClass), errexit);
 		if (devClass == kUSBHubClass)
 			goto errexit;
 	}
@@ -179,18 +179,18 @@ errexit:
 //
 bool		USBDevice::OpenAndConfigure(UInt8 configIndex)
 {
-	require(Usable(), errexit);
+	__Require(Usable(), errexit);
 
 	// Get a pointer to the configuration descriptor
-	require_noerr((*mPluginIntf)->GetConfigurationDescriptorPtr(mPluginIntf, configIndex, &mConfigDescPtr), errexit);
+    __Require_noErr((*mPluginIntf)->GetConfigurationDescriptorPtr(mPluginIntf, configIndex, &mConfigDescPtr), errexit);
 
 	// Open the device
 	if (!mIsOpen) {
-		require_noerr((*mPluginIntf)->USBDeviceOpen(mPluginIntf), errexit);
+        __Require_noErr((*mPluginIntf)->USBDeviceOpen(mPluginIntf), errexit);
 		mIsOpen = true;
 	}
 
-	require_noerr((*mPluginIntf)->SetConfiguration(mPluginIntf, mConfigDescPtr->bConfigurationValue), errexit);
+    __Require_noErr((*mPluginIntf)->SetConfiguration(mPluginIntf, mConfigDescPtr->bConfigurationValue), errexit);
 
 	return true;
 errexit:
@@ -207,7 +207,7 @@ bool		USBDevice::GetCompositeConfiguration()
 
 	if (mConfigDescPtr == NULL) {
 		// for now we're assuming configuration index 0
-		require_noerr((*mPluginIntf)->GetConfigurationDescriptorPtr(mPluginIntf, 0, &mConfigDescPtr), errexit);
+        __Require_noErr((*mPluginIntf)->GetConfigurationDescriptorPtr(mPluginIntf, 0, &mConfigDescPtr), errexit);
 	}
 	return true;
 
@@ -278,12 +278,12 @@ int		USBDevice::LoadDescriptor(			UInt8					descType,
 #endif
 	if (descType != kUSBStringDesc) {
 		if (err) {
-			check_noerr(err);	// debugging reporting
+			__Check_noErr(err);	// debugging reporting
 			return -1;
 		}
 	} else {
 		if (err != kIOReturnSuccess && err != kIOReturnOverrun) {	// overrun is normal for strings
-			check_noerr(err);	// debugging reporting
+			__Check_noErr(err);	// debugging reporting
 			return -1;
 		}
 		int stringLen = ((Byte *)buf)[0];
@@ -296,7 +296,7 @@ int		USBDevice::LoadDescriptor(			UInt8					descType,
 		req.wIndex = wIndex;
 		req.wLength = stringLen;
 		req.pData = buf;
-		verify_noerr(err = (*deviceIntf)->DeviceRequest(deviceIntf, &req));
+		__Verify_noErr(err = (*deviceIntf)->DeviceRequest(deviceIntf, &req));
 		if (err)
 			return -1;
 	}
@@ -325,14 +325,14 @@ USBInterface *	USBDevice::FindInterface(
 	intfRequest.bInterfaceProtocol	= kIOUSBFindInterfaceDontCare;
 	intfRequest.bAlternateSetting	= desiredAlternateSetting;
 	
-	require_noerr((*deviceIntf)->CreateInterfaceIterator(deviceIntf, &intfRequest, &intfIter), errexit);
+    __Require_noErr((*deviceIntf)->CreateInterfaceIterator(deviceIntf, &intfRequest, &intfIter), errexit);
 
 	while ((ioInterfaceObj = IOIteratorNext(intfIter)) != 0) {
 		USBInterface *interface = new USBInterface(this, ioInterfaceObj);
 		IOUSBInterfaceInterface **intfIntf = interface->GetPluginInterface();
 		if (intfIntf != NULL) {
 			UInt8 intfNum;
-			require_noerr((*intfIntf)->GetInterfaceNumber(intfIntf, &intfNum), nextInterface);
+            __Require_noErr((*intfIntf)->GetInterfaceNumber(intfIntf, &intfNum), nextInterface);
 			if (intfNum == desiredInterfaceNumber) {
 				IOObjectRelease(ioInterfaceObj);
 				IOObjectRelease(intfIter);
@@ -362,7 +362,7 @@ USBInterface *	USBDevice::FindInterface(	IOUSBFindInterfaceRequest &intfRequest)
 	io_service_t				ioInterfaceObj;
 	io_iterator_t				intfIter = 0;
 	
-	require_noerr((*deviceIntf)->CreateInterfaceIterator(deviceIntf, &intfRequest, &intfIter), errexit);
+    __Require_noErr((*deviceIntf)->CreateInterfaceIterator(deviceIntf, &intfRequest, &intfIter), errexit);
 
 	if ((ioInterfaceObj = IOIteratorNext(intfIter)) != 0) {
 		USBInterface *interface = new USBInterface(this, ioInterfaceObj);
@@ -397,11 +397,11 @@ USBInterface::USBInterface(					USBDevice *				device,
 		usleep(100 * 1000);	// wait 100 ms
 		intfIntf = GetPluginInterface();
 	}
-	require(intfIntf != NULL, errexit);
+	__Require(intfIntf != NULL, errexit);
 	
 	if (device == NULL) {
 		io_service_t ioDeviceObj;
-		require_noerr((*intfIntf)->GetDevice(intfIntf, &ioDeviceObj), errexit);
+        __Require_noErr((*intfIntf)->GetDevice(intfIntf, &ioDeviceObj), errexit);
 		device = new USBDevice(ioDeviceObj);
 		device->GetCompositeConfiguration();
 		mCreatedDevice = true;
@@ -413,8 +413,8 @@ USBInterface::USBInterface(					USBDevice *				device,
 	if (config != NULL && intfIntf != NULL) {
 		Byte *p = (Byte *)config, *pend = p + USBToHostWord(config->wTotalLength);
 		UInt8 interfaceNumber, alternateSetting;
-		require_noerr((*intfIntf)->GetInterfaceNumber(intfIntf, &interfaceNumber), errexit);
-		require_noerr((*intfIntf)->GetAlternateSetting(intfIntf, &alternateSetting), errexit);
+        __Require_noErr((*intfIntf)->GetInterfaceNumber(intfIntf, &interfaceNumber), errexit);
+        __Require_noErr((*intfIntf)->GetAlternateSetting(intfIntf, &alternateSetting), errexit);
 		
 		while (p < pend) {
 			IOUSBInterfaceDescriptor *intfDesc = (IOUSBInterfaceDescriptor *)p;
@@ -436,7 +436,7 @@ errexit: ;
 USBInterface::~USBInterface()
 {
 	if (mIsOpen)
-		verify_noerr((*mPluginIntf)->USBInterfaceClose(mPluginIntf));
+		__Verify_noErr((*mPluginIntf)->USBInterfaceClose(mPluginIntf));
 	if (mPluginIntf != NULL)
 		(*mPluginIntf)->Release(mPluginIntf);
 	IOObjectRelease(mIOService);
@@ -452,7 +452,7 @@ bool	USBInterface::Open()
 	IOUSBInterfaceInterface **intfIntf = GetPluginInterface();
 	if (intfIntf == NULL) return false;
 	
-	require_noerr((*intfIntf)->USBInterfaceOpen(intfIntf), errexit);
+    __Require_noErr((*intfIntf)->USBInterfaceOpen(intfIntf), errexit);
 	return true;
 	
 errexit:
@@ -470,7 +470,7 @@ IOUSBInterfaceInterface **	USBInterface::GetPluginInterface()
 		IOReturn	 			kr;
 		SInt32 					score;
 
-		require_noerr(IOCreatePlugInInterfaceForService(
+        __Require_noErr(IOCreatePlugInInterfaceForService(
 			mIOService, kIOUSBInterfaceUserClientTypeID, kIOCFPlugInInterfaceID, 
 			&ioPlugin, &score), errexit);
 		
@@ -478,7 +478,7 @@ IOUSBInterfaceInterface **	USBInterface::GetPluginInterface()
 		(*ioPlugin)->Release(ioPlugin);
 		ioPlugin = NULL;
 		if (kr) {
-			debug_string("QueryInterface failed");
+			__Debug_String("QueryInterface failed");
 			mPluginIntf = NULL;
 		}
 	}

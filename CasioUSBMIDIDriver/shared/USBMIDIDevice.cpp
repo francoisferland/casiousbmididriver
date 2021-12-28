@@ -1,4 +1,4 @@
-/*	Copyright © 2007 Apple Inc. All Rights Reserved.
+/*	Copyright ï¿½ 2007 Apple Inc. All Rights Reserved.
 	
 	Disclaimer: IMPORTANT:  This Apple software is supplied to you by 
 			Apple Inc. ("Apple") in consideration of your agreement to the
@@ -95,7 +95,7 @@ bool	USBMIDIDevice::Initialize()
 	mCurWriteBuf = 0;
 	
 	// don't go any further if we don't have a valid pipe
-	require(HaveOutPipe() || HaveInPipe(), errexit);
+	__Require(HaveOutPipe() || HaveInPipe(), errexit);
 
 #if VERBOSE
 	printf("starting MIDI, mOutPipe=0x%lX, mInPipe=0x%lX\n", (long)mOutPipe.mPipeIndex, (long)mInPipe.mPipeIndex);
@@ -110,8 +110,8 @@ bool	USBMIDIDevice::Initialize()
 		if (ioRunLoop != NULL) {
 			source = (*mUSBIntfIntf)->GetInterfaceAsyncEventSource(mUSBIntfIntf);
 			if (source == NULL) {
-				require_noerr((*mUSBIntfIntf)->CreateInterfaceAsyncEventSource(mUSBIntfIntf, &source), errexit);
-				require(source != NULL, errexit);
+                __Require_noErr((*mUSBIntfIntf)->CreateInterfaceAsyncEventSource(mUSBIntfIntf, &source), errexit);
+				__Require(source != NULL, errexit);
 			}
 			if (!CFRunLoopContainsSource(ioRunLoop, source, kCFRunLoopDefaultMode))
 				CFRunLoopAddSource(ioRunLoop, source, kCFRunLoopDefaultMode);
@@ -163,10 +163,10 @@ USBMIDIDevice::~USBMIDIDevice()
 	mShuttingDown = true;
 
 	if (HaveOutPipe())
-		verify_noerr((*mUSBIntfIntf)->AbortPipe(mUSBIntfIntf, mOutPipe.mPipeIndex));
+		__Verify_noErr((*mUSBIntfIntf)->AbortPipe(mUSBIntfIntf, mOutPipe.mPipeIndex));
 
 	if (HaveInPipe())
-		verify_noerr((*mUSBIntfIntf)->AbortPipe(mUSBIntfIntf, mInPipe.mPipeIndex)); 
+		__Verify_noErr((*mUSBIntfIntf)->AbortPipe(mUSBIntfIntf, mInPipe.mPipeIndex));
 
 	const int sleepMicros = 10000;	// 10 ms
 	const int timeoutMicros = 2*1000*1000;	// 2 seconds
@@ -234,12 +234,12 @@ void	USBMIDIDevice::FindPipes()
 	UInt16			pipeIndex;			//, maxPacketSize; 		
 	
 	numEndpoints = 0;
-	require_noerr((*mUSBIntfIntf)->GetNumEndpoints(mUSBIntfIntf, &numEndpoints), errexit);
+    __Require_noErr((*mUSBIntfIntf)->GetNumEndpoints(mUSBIntfIntf, &numEndpoints), errexit);
 		// find the number of endpoints for this interface
 
 	for (pipeIndex = 1; pipeIndex <= numEndpoints; ++pipeIndex) {
 		USBPipe pipe;
-		require_noerr(mUSBInterface->GetPipe(pipeIndex, pipe), nextPipe);
+        __Require_noErr(mUSBInterface->GetPipe(pipeIndex, pipe), nextPipe);
 		if (pipe.mDirection == kUSBOut)
 			mOutPipe = pipe;
 		else if (pipe.mDirection == kUSBIn)
@@ -322,7 +322,7 @@ void	USBMIDIDevice::Send(const MIDIPacketList *pktlist, int portNumber)
 void	USBMIDIDevice::DoRead(IOBuffer &readBuf)
 {
 	readBuf.SetIOPending(true);
-	verify_noerr((*mUSBIntfIntf)->ReadPipeAsync(mUSBIntfIntf, mInPipe.mPipeIndex, readBuf, mInPipe.mMaxPacketSize, ReadCallback, &readBuf));
+	__Verify_noErr((*mUSBIntfIntf)->ReadPipeAsync(mUSBIntfIntf, mInPipe.mPipeIndex, readBuf, mInPipe.mMaxPacketSize, ReadCallback, &readBuf));
 }
 
 // _________________________________________________________________________________________
@@ -337,13 +337,13 @@ void	USBMIDIDevice::ReadCallback(void *refcon, IOReturn asyncReadResult, void *a
 
 	if (asyncReadResult == kIOReturnAborted)
 		goto done;
-	require_noerr(asyncReadResult, done);
+    __Require_noErr(asyncReadResult, done);
 	{
 		USBMIDIDevice *self = (USBMIDIDevice *)buffer.Owner();
 		if (!self->mShuttingDown) {
 			ByteCount bytesReceived = (ByteCount)arg0;
 			if (bytesReceived == 0)
-				debug_string("0 bytes received");
+				__Debug_String("0 bytes received");
 			
 			//printf("ReadCallback: arg0 is %ld\n", (long)bytesReceived);
 			self->HandleInput(buffer, bytesReceived);
@@ -376,7 +376,7 @@ void	USBMIDIDevice::DoWrite()
 			Dump("OUT", writeBuffer, msglen);
 #endif
 			writeBuffer.SetIOPending(true);
-			verify_noerr((*mUSBIntfIntf)->WritePipeAsync(mUSBIntfIntf, mOutPipe.mPipeIndex, writeBuffer, msglen, WriteCallback, this));
+			__Verify_noErr((*mUSBIntfIntf)->WritePipeAsync(mUSBIntfIntf, mOutPipe.mPipeIndex, writeBuffer, msglen, WriteCallback, this));
 		}
 	}
 }
@@ -394,7 +394,7 @@ void	USBMIDIDevice::WriteCallback(void *refcon, IOReturn asyncWriteResult, void 
 	self->mWriteBuf[self->mCurWriteBuf].SetIOPending(false);
 	if (++self->mCurWriteBuf == kNumWriteBufs) 
 		self->mCurWriteBuf = 0;
-	check_noerr(asyncWriteResult);
+	__Check_noErr(asyncWriteResult);
 	if (!self->mShuttingDown && !asyncWriteResult)
 		self->DoWrite();
 }

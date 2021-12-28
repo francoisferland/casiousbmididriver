@@ -1,4 +1,4 @@
-/*	Copyright © 2007 Apple Inc. All Rights Reserved.
+/*	Copyright ï¿½ 2007 Apple Inc. All Rights Reserved.
 	
 	Disclaimer: IMPORTANT:  This Apple software is supplied to you by 
 			Apple Inc. ("Apple") in consideration of your agreement to the
@@ -66,21 +66,21 @@ IOServiceClient::IOServiceClient(CFRunLoopRef notifyRunLoop, CFMutableDictionary
 
 	// This gets the master device mach port through which all messages
 	// to the kernel go, and initiates communication with IOKit.
-	require_noerr(IOMasterPort(MACH_PORT_NULL, &mMasterDevicePort), errexit);
+    __Require_noErr(IOMasterPort(MACH_PORT_NULL, &mMasterDevicePort), errexit);
 	
 	if (mRunLoop) {
 		mNotifyPort = IONotificationPortCreate(mMasterDevicePort);
-		require(mNotifyPort != NULL, errexit);
+		__Require(mNotifyPort != NULL, errexit);
 		mRunLoopSource = IONotificationPortGetRunLoopSource(mNotifyPort);
-		require(mRunLoopSource != NULL, errexit);
+		__Require(mRunLoopSource != NULL, errexit);
 			
 		CFRunLoopAddSource(mRunLoop, mRunLoopSource, kCFRunLoopDefaultMode);
 			
 		CFRetain(mMatchingDict);
-		require_noerr(IOServiceAddMatchingNotification(mNotifyPort, kIOPublishNotification, mMatchingDict, ServicePublishCallback, this, &mServicePublishIterator), errexit);
+        __Require_noErr(IOServiceAddMatchingNotification(mNotifyPort, kIOPublishNotification, mMatchingDict, ServicePublishCallback, this, &mServicePublishIterator), errexit);
 	
 		CFRetain(mMatchingDict);
-		require_noerr(IOServiceAddMatchingNotification(mNotifyPort, kIOTerminatedNotification, mMatchingDict, ServiceTerminateCallback, this, &mServiceTerminateIterator), errexit);
+        __Require_noErr(IOServiceAddMatchingNotification(mNotifyPort, kIOTerminatedNotification, mMatchingDict, ServiceTerminateCallback, this, &mServiceTerminateIterator), errexit);
 			
 		// signal that the first call to ScanServices needs to empty the publish/terminate iterators
 		mIteratorsNeedEmptying = true;
@@ -151,7 +151,7 @@ void	IOServiceClient::ScanServices()
 	io_iterator_t iter = 0;
 
 	CFRetain(mMatchingDict);
-	require_noerr(IOServiceGetMatchingServices(mMasterDevicePort, mMatchingDict, &iter), errexit);
+    __Require_noErr(IOServiceGetMatchingServices(mMasterDevicePort, mMatchingDict, &iter), errexit);
 	ServicesPublished(iter);
 
 errexit:
